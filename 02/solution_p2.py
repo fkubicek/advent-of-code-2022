@@ -1,5 +1,8 @@
 from enum import Enum
 
+from aoc22_util.input import *
+
+
 SCORE_DRAW = 3
 SCORE_VICTORY = 6
 
@@ -29,11 +32,9 @@ def symbol_to_hand(symbol):
         case "C" | "Z": return Hand.SCISSOR
 
 
-file = open("02/input.txt", "r")
-
 score = 0
 
-for line in file.readlines():
+for line in file_readlines_stripped("02/input.txt"):
     opponent, outcome = line.split()
     opponent = symbol_to_hand(opponent)
 

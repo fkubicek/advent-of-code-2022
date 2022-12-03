@@ -1,10 +1,9 @@
-file = open("input.txt", "r")
+from aoc22_util.input import *
 
 sum_partial = 0
 sums_aggregated = []
 
-for line in file.readlines():
-    line = line.strip()
+for line in file_readlines_stripped("01/input.txt"):
     if line == "":
         sums_aggregated.append(sum_partial)
         sum_partial = 0
