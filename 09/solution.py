@@ -1,4 +1,5 @@
 from aoc22_util.input import *
+from aoc22_util.coords import Coords2D
 
 def signum(x):
     if x < 0:
@@ -7,19 +8,19 @@ def signum(x):
         return 1
     return 0
 
-def move(new_head, tail):
-    delta_x = new_head[0] - tail[0]
-    delta_y = new_head[1] - tail[1]
+def move(new_head: Coords2D, tail: Coords2D):
+    delta_x = new_head.x - tail.x
+    delta_y = new_head.y - tail.y
     if abs(delta_x) >= 2 or abs(delta_y) >= 2:
-        return (tail[0] + signum(delta_x), tail[1] + signum(delta_y))
+        return tail + Coords2D(signum(delta_x), signum(delta_y))
     return tail
 
 if __name__ == "__main__":
 
-    visited_p1 = {(0, 0)}
-    visited_p2 = {(0, 0)}
-    head = (0, 0)
-    rope = [(0,0) for _ in range(9)]
+    visited_p1 = {Coords2D(0, 0)}
+    visited_p2 = {Coords2D(0, 0)}
+    head = Coords2D(0, 0)
+    rope = [Coords2D(0,0) for _ in range(9)]
 
     for line in file_readlines_stripped("09/input.txt"):
         direction, steps = line.split()
@@ -27,13 +28,13 @@ if __name__ == "__main__":
         for _ in range(steps):
             match direction:
                 case "U":
-                    head = (head[0], head[1] + 1)
+                    head += Coords2D(0, 1)
                 case "D":
-                    head = (head[0], head[1] - 1)
+                    head += Coords2D(0, -1)
                 case "R":
-                    head = (head[0] + 1, head[1])
+                    head += Coords2D(1, 0)
                 case "L":
-                    head = (head[0] - 1, head[1])
+                    head += Coords2D(-1, 0)
                 case _:
                     raise Exception(f"Unknown direction '{direction}'")
             prev = head
