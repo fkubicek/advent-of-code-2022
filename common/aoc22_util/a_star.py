@@ -1,4 +1,4 @@
-from typing import List, Tuple, Self
+from typing import Self
 from numbers import Number
 import math
 
@@ -15,7 +15,7 @@ class AStarConfiguration:
     def h(self) -> Number:
         raise NotImplementedError
 
-    def neighbors(self) -> List[Tuple[Self, int]]:
+    def neighbors(self) -> list[tuple[Self, int]]:
         """Returns a list of all neighbors with the costs of the edges between this configuration and the respective neighbors."""
         raise NotImplementedError
 
